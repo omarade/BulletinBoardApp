@@ -1,0 +1,24 @@
+doctype html
+html
+	head
+		link(href='css/bootstrap.min.css' type='text/css' rel='stylesheet')
+		link(href='css/bootstrap-theme.min.css' type='text/css' rel='stylesheet')
+	body
+		.container
+			header
+				nav.navbar.navbar-inverse
+					.container.navi
+						ul.nav.navbar-nav
+							li
+								a(href='/') WRITE MESSAGES
+							li
+								a(href='msg') READ MESSAGES
+		.container
+			.row
+				.col-xs-12
+					.jumbotron
+						each msg in msgs
+							h2.text-center #{msg.body}
+
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')

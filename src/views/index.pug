@@ -1,0 +1,39 @@
+doctype html
+html
+	head
+		link(href='css/bootstrap.min.css' type='text/css' rel='stylesheet')
+		link(href='css/bootstrap-theme.min.css' type='text/css' rel='stylesheet')
+
+	body
+		.container
+			header
+				nav.navbar.navbar-inverse
+					.container.navi
+						ul.nav.navbar-nav
+							li
+								a(href='/') WRITE MESSAGES
+							li
+								a(href='msg') READ MESSAGES
+		.container	
+			.row
+				.col-xs-8.col-xs-push-2
+					.jumbotron
+						h2.text-center Write your message
+						form(action="/" method="post" autocomplete='off' )
+							//- name='username' -- request.body.username
+							.form-group
+								label(for='text') Title
+								input#text.form-control(type='text' name='title' placeholder='Message subject' value='')
+								label(for='text') Message
+								textarea#text.form-control.text(type='text' name='message' rows='5' placeholder='Write message here' value='')
+							.form-group.text-center
+								input.btn.btn-primary(type='submit' value='Post!')
+						p #{confirmation}
+		
+		script(src='/js/jquery.min.js')
+		script(src='/js/bootstrap.min.js')
+
+		script.
+			$('#text').click(function(){
+				$('p').fadeOut(1000)
+			})
