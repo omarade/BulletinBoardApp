@@ -23,9 +23,8 @@ app.post('/', function(req, res){
 	console.log('title', title)
 	console.log('msg', msg)
 	pg.connect(connectionString, function(err, client, done){
-
 		// insert into messages (title, body) values ('title', 'msg');
-		client.query("insert into messages (title, body) values ('" + title + "', '" + msg + "')", function(err){
+		client.query(`insert into messages (title, body) values (' ${title} ',' ${msg} ')`, function(err){
 			console.log('title', title)
 			console.log('msg', msg)
 			if (err){
@@ -37,14 +36,17 @@ app.post('/', function(req, res){
 
 	})
 	res.render('index', {confirmation: 'Your message has been sent'})
-
 })
 
 app.get('/msg', function(req, res){
 	pg.connect(connectionString, function(err, client, done){
-		client.query('select body from messages', function(err, result){
-			var msgs = result.rows
+		console.log("test:" + process.env.POSTGRES_USER)
 
+		if(err) {
+			throw err
+		}
+		client.query('select * from messages', function(err, result){
+			var msgs = result.rows
 			done()
 			pg.end()
 			res.render('msgs', {msgs: msgs})

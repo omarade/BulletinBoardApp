@@ -18,7 +18,9 @@ html
 				.col-xs-12
 					.jumbotron
 						each msg in msgs
+							p.text-center #{msg.title}
 							h2.text-center #{msg.body}
+							br
 
 		script(src='/js/jquery.min.js')
 		script(src='/js/bootstrap.min.js')
